@@ -21,7 +21,7 @@
           </elementProp>
           <elementProp name="PORT" elementType="Argument">
             <stringProp name="Argument.name">PORT</stringProp>
-            <stringProp name="Argument.value">${__P(Port,5000)}</stringProp>
+            <stringProp name="Argument.value">${__P(Port,5002)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -195,7 +195,7 @@ for (resource in syncResources) {
           </WhileController>
           <hashTree>
             <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Wait 5s" enabled="true">
-              <stringProp name="ConstantTimer.delay">5000</stringProp>
+              <stringProp name="ConstantTimer.delay">5002</stringProp>
               <stringProp name="TestPlan.comments">Wait before re-polling</stringProp>
             </ConstantTimer>
             <hashTree/>
