@@ -26,6 +26,8 @@
           </elementProp>
         </collectionProp>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
@@ -136,6 +138,11 @@ for (resource in syncResources) {
               <boolProp name="Assertion.assume_success">false</boolProp>
               <intProp name="Assertion.test_type">1</intProp>
             </ResponseAssertion>
+            <hashTree/>
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Wait 10 Minutes" enabled="false">
+              <stringProp name="ConstantTimer.delay">600002</stringProp>
+              <stringProp name="TestPlan.comments">Wait to ensure the jobs have started correctly (otherwise </stringProp>
+            </ConstantTimer>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Start Sync Import Notifications" enabled="false">
@@ -252,7 +259,7 @@ for (resource in syncResources) {
                 <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               </JSONPostProcessor>
               <hashTree/>
-              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Store Custom Metrics" enabled="true">
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Store Custom Metrics">
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
@@ -270,11 +277,11 @@ for (job in response.jobs) {
 	def messagesProcessed = job.messagesProcessed
 	def messagesFailed = job.messagesFailed
 	
-	log.info(&quot;The value of ${resource} blobsRead is ${blobsRead}&quot;)
-	log.info(&quot;The value of ${resource} blobsPublished is ${blobsPublished}&quot;)
-	log.info(&quot;The value of ${resource} blobsFailed is ${blobsFailed}&quot;)
-	log.info(&quot;The value of ${resource} messagesProcessed is ${messagesProcessed}&quot;)
-	log.info(&quot;The value of ${resource} messagesFailed is ${messagesFailed}&quot;)
+	System.out.println(&quot;The value of ${resource} blobsRead is ${blobsRead}&quot;)
+	System.out.println(&quot;The value of ${resource} blobsPublished is ${blobsPublished}&quot;)
+	System.out.println(&quot;The value of ${resource} blobsFailed is ${blobsFailed}&quot;)
+	System.out.println(&quot;The value of ${resource} messagesProcessed is ${messagesProcessed}&quot;)
+	System.out.println(&quot;The value of ${resource} messagesFailed is ${messagesFailed}&quot;)
 
 	vars.put(&quot;${resource}BlobsRead&quot;, &quot;${blobsRead}&quot;)
 	vars.put(&quot;${resource}BlobsPublished&quot;, &quot;${blobsPublished}&quot;)
@@ -311,7 +318,7 @@ for (job in response.jobs) {
                 <intProp name="Assertion.test_type">1</intProp>
               </ResponseAssertion>
               <hashTree/>
-              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Store Custom Metrics" enabled="true">
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Store Custom Metrics">
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
@@ -329,7 +336,7 @@ for (collection in response.collections) {
 	
 	//vars.put(&quot;firstName&quot;, response.members[2].firstName.toString());
 	
-	log.info(&quot;The value of ${name} Count is ${size}&quot;)
+	System.out.println(&quot;The value of ${name} Count is ${size}&quot;)
 	vars.put(&quot;${name}CollectionCount&quot;, &quot;${size}&quot;)
 
 }</stringProp>
